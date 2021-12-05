@@ -1,10 +1,11 @@
 class hero:
-
+	def __init__(self,char_name):
+		self.char_name=char_name
 	def stats(self):
 		statistics = {
-			"name":"Hero",
-			"maxhp":20,
-			"hp":20,
+			"name": self.char_name,
+			"maxhp":10,
+			"hp":10,
 			"minatk":1,
 			"maxatk":5,
 			"block":0,
