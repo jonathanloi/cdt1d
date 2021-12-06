@@ -14,7 +14,7 @@ class newgame():
 Play this game to find out how self-confident you are!''')
 		a = battlefield(newchar,newstats,gobbo())
 		a.action()
-		m.newline(f'''The threat has now been vanquished, and you take some time to scan the surroundings. The village now stands in tatters, a flag bearing an evil crown revealing itself. The Demon King has awakened, and you are the only one who can slay him. Your journey now begins! The first thing to do is to find a place to rest, or get stronger.''')
+		m.newline(f'''Thank you for participating in our game!''')
 		m.choices()
 
 		return None
