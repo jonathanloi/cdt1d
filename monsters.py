@@ -4,9 +4,9 @@ class gobbo:
 
 	def stats(self):
 		statistics = {
-			"name":"Goblin",
-			"maxhp":10,
-			"hp":10
+			"name":"Society",
+			"maxhp":20,
+			"hp":20
 			}
 		return statistics
 

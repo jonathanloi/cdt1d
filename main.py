@@ -1,5 +1,6 @@
 from newgame import newgame
 from character import *
+from questions import *
 
 class main:
 
@@ -7,18 +8,16 @@ class main:
 		self.newchar = newchar
 		self.newstats = newchar.stats()
 
-	def start(self):
-
-		out = f'''===================================
-Welcome, new Hero. To the Game of Choices. Please select a choice below.
+	def start(self,char_name):
+		out = '''===================================
+Welcome to the Game of Life Choices, {}! Please select a choice below.
 [ New Game ]
 [ Help ]
 [ Quit ]
-==================================='''
+==================================='''.format(char_name)
 		helptext = f'''===================================
-The Game of Choices is a simple RPG meant to help with teaching players how to make the best choice to progress. They will be tasked with defeating the Demon King, and it will be hard, but as they learn what does what, they will definitely be able to complete the game.
+The Game of Life Choices is a simple RPG meant to educate players on the importance of loving oneself. Players will be tasked to make some life choices during the game. At the end of the game, players will gain insight on how much they love themselves.
 ==================================='''
-
 		while True:
 			print(out)
 			x = input("Your Choice: ")
@@ -36,4 +35,6 @@ The Game of Choices is a simple RPG meant to help with teaching players how to m
 			else:
 				print("You have entered an invalid response. Please try again.")
 
-main(hero()).start()
+char_name = input("Please enter your name: ")
+main(hero(char_name)).start(char_name)
+

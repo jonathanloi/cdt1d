@@ -1,18 +1,44 @@
-from random import *
+from random import choice as ch
 from monsters import *
 from battlefield import battlefield
-from menu import menus
+from menu import *
+from questions import *
 
-class newgame():
+class newgame:
+
+	def popup_question(self,newstats):
+		#Something questions 2
+		q = questions()
+		rand_qn = q.random_qn()
+		qchoice = ch(list(rand_qn.keys()))
+		qview = rand_qn[qchoice]
+		rand_qn.pop(qchoice)
+		while True:
+			print(f"""===================================
+{qview}
+===================================""")
+			ans = input("Your choice: ")
+			if ans.lower() == 'a':
+				break
+			elif ans.lower() == 'b':
+				print("GAME OVER")
+				exit()
+			else: 
+				print("You have entered an invalid action!")
+				continue
+
 
 	def start_instance(self,newchar,newstats):
 
 		m = menus(newstats)
+		self.popup_question(newstats)
+		m.newline(f'''We live in a highly competitive society. From academic, to family and our career, there are tons of expectations we have set as a society. It does not help that social media has become the norm in our generation. With the prevalence of social media, we are constantly comparing ourselves to others who live the 'perfect' life, pressured to follow the latest trends and subjected to FOMO. While struggling to keep up with societal expectations, we tend to lose focus on ourselves and put ourselves in a cycle of self-doubt.
 
-		m.newline(f'''The story begins, telling of a lone hero, living a simple life, living a peaceful life. You have enjoyed this peaceful life for a long time, but today that which you lived fo shall be tested. An evil being stands between you and your home! Pick up your sword and fight!''')
-		a = battlefield(newchar,newstats,gobbo())
-		a.action()
-		m.newline(f'''The threat has now been vanquished, and you take some time to scan the surroundings. The village now stands in tatters, a flag bearing an evil crown revealing itself. The Demon King has awakened, and you are the only one who can slay him. Your journey now begins! The first thing to do is to find a place to rest, or get stronger.''')
-		m.choices()
+Play this game to embark on an Exploration about yourself!''')
+		a = battlefield(newchar,newstats,gobbo()) # This is the object
+		a.action() # This is the action module
+		m.choices() # This runs after the fight and if u r alive -> what do u do next? -> If u choose continue it will run the next line of code
+		a.action() # This is the action module
+		m.newline(f'''Thank you for participating in our game!''')
 
 		return None
