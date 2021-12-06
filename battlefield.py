@@ -11,17 +11,19 @@ class battlefield:
 		self.monster = monster
 		self.mstats = self.monster.stats()
 
+	# def generate_qn(self, qn):
+	# 	qchoice = ch(list(qn.keys()))
+	# 	qview = qn[qchoice]
+	# 	qn = qn.pop(qchoice)
+	# 	return qn
 
-
-	def bstate(self):
+	def bstate(self, qn):
 		enemy = f'''{self.mstats["name"]} [{self.mstats["hp"]}/{self.mstats["maxhp"]}]'''
 		you = f'''{self.pstats["name"]} [{self.pstats["hp"]}/{self.pstats["maxhp"]}]'''
 
-		q = questions()
-		qn = q.game_qn()
 		qchoice = ch(list(qn.keys()))
 		qview = qn[qchoice]
-		qn = qn.pop(qchoice)
+		qn.pop(qchoice)
 
 		battleground = f'''===================================
 {enemy}
@@ -32,7 +34,7 @@ class battlefield:
 ==================================='''
 		print(battleground)
 		choice = input("What do you do? ")
-		return choice.lower()		
+		return choice.lower(),qn		
 
 
 	def inventory(self):
@@ -48,12 +50,15 @@ Return
 
 
 	def action(self):
-		while self.mstats['hp']>0 and self.pstats['hp']>0:
-			c = self.bstate()
+		q = questions()
+		qn = q.game_qn()
+		for i in range(5):
+			c,qn = self.bstate(qn)
+			print(len(qn),type(qn))
 			if c == "a":
 				self.pstats["hp"]-=4
 			elif c == "b":
-				if self.pstats["hp"]<self.pstats["maxhp"]:
+				if self.pstats["hp"] < self.pstats["maxhp"]:
 					self.pstats["hp"]+=2
 				else:
 					continue
@@ -65,9 +70,13 @@ Return
 
 		print(f'''===================================
 {self.mstats["name"]} [{self.mstats["hp"]}/{self.mstats["maxhp"]}]
-{self.pstats["name"]} [{self.pstats["hp"]}/{self.pstats["maxhp"]}]''')
+{self.pstats["name"]} [{self.pstats["hp"]}/{self.pstats["maxhp"]}]
+''')
 		if self.pstats['hp']>=12:
-			print("Congratulations! You are self-confident and do not give in to peer or societal pressures! Keep it up!")  
+			print("""Congratulations! You are self-confident and do not give in to peer or societal pressures! Keep it up!
+===================================""")  
 		else:
-			print("You have succumbed to societal expectations and neglected your self-worth. It is time to start learning to love yourself and become stronger!")
+			print("""You have succumbed to societal expectations and neglected your self-worth. It is time to start learning to love yourself and become stronger!
+===================================""")
+		input("Press ENTER to continue.")
 		#return 0 if self.pstats['hp']>0 else 1
