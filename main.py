@@ -1,12 +1,12 @@
 from newgame import newgame
 from character import *
+from questions import *
 
 class main:
 
 	def __init__(self,newchar):
 		self.newchar = newchar
 		self.newstats = newchar.stats()
-		self.newquestionset
 
 	def start(self,char_name):
 		out = '''===================================

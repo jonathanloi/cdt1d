@@ -1,26 +1,38 @@
-from random import *
+from random import choice as ch
 from monsters import *
 from battlefield import battlefield
-from menu import menus
+from menu import *
 from questions import *
 
-class newgame():
+class newgame:
 
-	def popup_question():
+	def popup_question(self,newstats):
 		#Something questions 2
-		qchoice = random.choice(list(questions.keys()))
-		qview = questions[qchoice]
-		questions.pop(qchoice)
+		m = menus(newstats)
+		q = questions()
+		rand_qn = q.random_qn()
+		qchoice = ch(list(rand_qn.keys()))
+		qview = rand_qn[qchoice]
+		rand_qn.pop(qchoice)
 		while True:
-			m.newline(qview)
-			ans = input("Your choice. ")
-			if ans == XYZ
-				...
+			print(f"""===================================
+{qview}
+===================================""")
+			ans = input("Your choice: ")
+			if ans.lower() == 'yes':
+				break
+			elif ans.lower() == 'no':
+				print("GAME OVER")
+				exit()
+			else: 
+				print("You have entered an invalid action!")
+				continue
+
 
 	def start_instance(self,newchar,newstats):
 
 		m = menus(newstats)
-		self.popup_question()
+		self.popup_question(newstats)
 		m.newline(f'''We live in a highly competitive society. From academic, to family and our career, there are tons of expectations we have set as a society. It does not help that social media has become the norm in our generation. With the prevalence of social media, we are constantly comparing ourselves to others who live the 'perfect' life, pressured to follow the latest trends and subjected to FOMO. While struggling to keep up with societal expectations, we tend to lose focus on ourselves and put ourselves in a cycle of self-doubt.
 
 Play this game to find out how self-confident you are!''')
@@ -31,4 +43,3 @@ Play this game to find out how self-confident you are!''')
 		m.newline(f'''Thank you for participating in our game!''')
 
 		return None
-	
