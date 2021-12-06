@@ -1,6 +1,7 @@
 from random import *
 from monsters import *
 from character import *
+from questions import *
 
 class battlefield:
 	def __init__(self,newchar,newstats,monster):
@@ -12,9 +13,10 @@ class battlefield:
 	def bstate(self,i):
 		enemy = f'''{self.mstats["name"]} [{self.mstats["hp"]}/{self.mstats["maxhp"]}]'''
 		you = f'''{self.pstats["name"]} [{self.pstats["hp"]}/{self.pstats["maxhp"]}]'''
-		question={1:"""You've got homework and assignments due the next day and your friend asked you to hang out together with her. Would you ...
-
-a. join her because of peer pressure
+		question={1:"""You've got hom
+		qchoice = random.choice(list(questions.keys()))
+		qview = questions[qchoice]
+		questions.pop(qchoice)use of peer pressure
 b. decline politely and said you would join next time
 c. None of the above""", 2:"""Upon hearing negative comments about yourself from others, how would you react?
 
@@ -22,7 +24,7 @@ a. Self-blame and self-hate
 b. React to it positively
 c. None of the above""", 3:"""You see your friends post stories with other groups of friends, you...
 
-a. wonder why you do not have as many friends as them
+qviewa. wonder why you do not have as many friends as them
 b. feel happy for them
 c. None of the above""", 4:"""Your group members are experienced in the topic for your school assignment, but you are completely new to the topic. You...
 
@@ -48,15 +50,15 @@ c. None of the above."""}
 		return choice.lower()		
 
 
-# 	def inventory(self):
-# 		inv1 = '\n'.join([f'''{k}: {v["count"]}''' for k,v in self.pstats["inventory"].items()])
-# 		inv2 = f'''===================================
-# {inv1}
+	def inventory(self):
+		inv1 = '\n'.join([f'''{k}: {v["count"]}''' for k,v in self.pstats["inventory"].items()])
+		inv2 = f'''===================================
+{inv1}
 
-# Return
-# ==================================='''
-# 		print(inv2)
-# 		return self.pstats["inventory"]
+Return
+==================================='''
+		print(inv2)
+		return self.pstats["inventory"]
 
 	def action(self):
 		for i in range(1,6):

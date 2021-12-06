@@ -49,7 +49,7 @@ You find {items[choose]["count"]}x {choose}! Upon using this item, the following
 		out = f'''===================================
 The rest of the day is free.
 [ Rest ]  [ Forage ]
-[ Shop ]  [ Status ]
+[ Status ]
 ==================================='''
 
 		while True:
@@ -63,8 +63,6 @@ The rest of the day is free.
 			elif dt.lower() == "forage":
 				self.forage()
 				break
-			elif dt.lower() == "shop":
-				None
 			elif dt.lower() == "status":
 				self.status()
 			else:
@@ -80,9 +78,8 @@ Make your choice. (Type the word in the brackets like these.)
 [ Take a break, spend some Downtime (Downtime) ]
 [ Quit the Game (Quit) ]
 ==================================='''
-
-		print(out)
 		while True:
+			print(out)
 			dt = input("What do you do? ")
 			if dt.lower() == "continue":
 				break
