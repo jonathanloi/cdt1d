@@ -11,11 +11,6 @@ class battlefield:
 		self.monster = monster
 		self.mstats = self.monster.stats()
 
-	# def generate_qn(self, qn):
-	# 	qchoice = ch(list(qn.keys()))
-	# 	qview = qn[qchoice]
-	# 	qn = qn.pop(qchoice)
-	# 	return qn
 
 	def bstate(self, qn):
 		enemy = f'''{self.mstats["name"]} [{self.mstats["hp"]}/{self.mstats["maxhp"]}]'''
@@ -37,6 +32,7 @@ class battlefield:
 		return choice.lower(),qn		
 
 
+
 	def inventory(self):
 		inv1 = '\n'.join([f'''{k}: {v["count"]}''' for k,v in self.pstats["inventory"].items()])
 		inv2 = f'''===================================
@@ -54,9 +50,12 @@ Return
 		qn = q.game_qn()
 		for i in range(5):
 			c,qn = self.bstate(qn)
-			print(len(qn),type(qn))
 			if c == "a":
-				self.pstats["hp"]-=4
+				self.pstats["hp"] -= 4
+				if self.pstats["hp"] <= 0:
+					break
+				else:
+					continue
 			elif c == "b":
 				if self.pstats["hp"] < self.pstats["maxhp"]:
 					self.pstats["hp"]+=2
@@ -79,4 +78,3 @@ Return
 			print("""You have succumbed to societal expectations and neglected your self-worth. It is time to start learning to love yourself and become stronger!
 ===================================""")
 		input("Press ENTER to continue.")
-		#return 0 if self.pstats['hp']>0 else 1

@@ -8,7 +8,6 @@ class newgame:
 
 	def popup_question(self,newstats):
 		#Something questions 2
-		m = menus(newstats)
 		q = questions()
 		rand_qn = q.random_qn()
 		qchoice = ch(list(rand_qn.keys()))

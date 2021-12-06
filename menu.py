@@ -58,7 +58,7 @@ The rest of the day is free.
 			dt = input("What do you do? ")
 			if dt.lower() == "rest":
 				self.newstats["hp"] = self.newstats["maxhp"]
-				self.newline("You take a break for the day, tending to your wounds. Your health is fully restored!")
+				self.newline("You take a break for the day, taking a rest and eat snacks. Your health is fully restored!")
 				break
 			elif dt.lower() == "forage":
 				self.forage()
@@ -85,7 +85,6 @@ Make your choice. (Type the word in the brackets like these.)
 				break
 			elif dt.lower() == "downtime":
 				self.newline("You decide to break from your journey for a bit to do other things.")
-				self.downtime()
 			elif  dt.lower() == "quit":
 				self.newline("You have quit the game.")
 				exit()

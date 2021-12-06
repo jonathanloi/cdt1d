@@ -16,7 +16,7 @@ Welcome to the Game of Life Choices, {}! Please select a choice below.
 [ Quit ]
 ==================================='''.format(char_name)
 		helptext = f'''===================================
-The Game of Life Choices is a simple RPG meant to educate players on the importance of loving oneself. Players will be tasked to make some life choices during the game. At the end of the game, players will gain insight on how much they love themself.
+The Game of Life Choices is a simple RPG meant to educate players on the importance of loving oneself. Players will be tasked to make some life choices during the game. At the end of the game, players will gain insight on how much they love themselves.
 ==================================='''
 		while True:
 			print(out)
