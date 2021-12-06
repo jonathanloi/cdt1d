@@ -4,8 +4,8 @@ class hero:
 	def stats(self):
 		statistics = {
 			"name": self.char_name,
-			"maxhp":10,
-			"hp":10,
+			"maxhp":20,
+			"hp":20,
 			"minatk":1,
 			"maxatk":5,
 			"block":0,

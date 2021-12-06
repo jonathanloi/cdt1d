@@ -5,8 +5,8 @@ class gobbo:
 	def stats(self):
 		statistics = {
 			"name":"Society",
-			"maxhp":10,
-			"hp":10
+			"maxhp":20,
+			"hp":20
 			}
 		return statistics
 

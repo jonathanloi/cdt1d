@@ -60,23 +60,29 @@ c. None of the above."""}
 
 	def action(self):
 		for i in range(1,6):
-			c = self.bstate(i)
-			if c == "b":
-				if self.pstats["hp"]<10:
-					self.pstats["hp"]+=1
-			elif c == "a":
-				self.pstats["hp"]-=2
-			elif c == "c":
-				continue
-			else:
-				print("You have entered an invalid action!")
-				input("Press ENTER to continue.")
-				continue
+			while True:
+				c = self.bstate(i)
+				if c == "b":
+					if self.pstats["hp"]<10:
+						self.pstats["hp"]+=1
+						break
+					else:
+						break
+				elif c == "a":
+					self.pstats["hp"]-=2
+					break
+				elif c == "c":
+					break
+				else:
+					print("""===================================
+You have entered an invalid action!""")
+					input("Press ENTER to continue.")
+					continue
 
 		print(f'''===================================
 {self.mstats["name"]} [{self.mstats["hp"]}/{self.mstats["maxhp"]}]
 {self.pstats["name"]} [{self.pstats["hp"]}/{self.pstats["maxhp"]}]''')
-		if self.pstats['hp']>=5:
+		if self.pstats['hp']>=7:
 			print("Congratulations! You are self-confident and do not give in to peer or societal pressures! Keep it up!")  
 		else:
 			print("You have succumbed to societal expectations and neglected your self-worth. It is time to start learning to love yourself and become stronger!")
