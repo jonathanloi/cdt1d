@@ -90,7 +90,7 @@ Make your choice. (Type the word in the brackets like these.)
 				self.newline("You decide to break from your journey for a bit to do other things.")
 				self.downtime()
 			elif  dt.lower() == "quit":
-				self.newline("You quit the game, bringing you back to reality. You see the world burn under the Demon King's reign. Was it worth it?")
+				self.newline("You have quit the game.")
 				exit()
 			else:
 				print("You have entered an invalid response. Please try again.")
