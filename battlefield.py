@@ -68,9 +68,9 @@ You have lost the game.
 						self.pstats["hp"]+=2
 						break
 					else:
-						br
+						break
 				elif c == "c":
-					continue
+					break
 				else:
 					print("You have entered an invalid action!")
 					continue
