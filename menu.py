@@ -13,68 +13,71 @@ class menus:
 		return input("Press ENTER to Continue.")
 
 	def status(self):
-		inv = ' / '.join([f'''{k}: {v["count"]}''' for k,v in self.newstats["inventory"].items()])
 		self.newline(f'''Your current statistics.
 HP: {self.newstats["hp"]}/{self.newstats["maxhp"]}
-Attack: {self.newstats["minatk"]}-{self.newstats["maxatk"]}
-Inventory: {inv}
-Days of Travel: {self.newstats["days"]}''')
+Days of Exploration: {self.newstats["days"]}''')
+
 
 	def forage(self):
 		items = {
-			"Berry":{"count":randint(1,3),"eline":"You regain 5 HP!","effect":"self.pstats['hp'] += 5"},
-			"Potion":{"count":1,"eline":"You restore your health fully!","effect":"self.pstats['hp'] = self.pstats['maxhp']"}
+			"Chocolate":{"count":randint(2,5),"eline":"regained 2 HP!","effect":2},
+			"Yogurt":{"count":1,"eline":"regained 3 HP!","effect":3},
+			"Nuts":{"count":randint(10,20),"eline":"regained 3 HP!","effect":3} 
 		}
 		choose = choice(list(items.keys()))
 		out = f'''===================================
-You forage in the surrounding lands.
-
-You find {items[choose]["count"]}x {choose}! Upon using this item, the following effect applies:
-
-[ {items[choose]["eline"]} ]
+You searched your kitchen and found some delicious snacks to treat yourself after a long day of work.
+You binged on {items[choose]["count"]}x {choose} and {items[choose]["eline"]}
 ==================================='''
-		if choose in self.newstats["inventory"]:
-			self.newstats["inventory"][choose]["count"] += items[choose]["count"]
-		else:
-			self.newstats["inventory"][choose] = items[choose]
+		self.newstats['hp'] += items[choose]["effect"]
 		print(out)
-		input("Press ENTER to view your inventory.")
+		input("Press ENTER to view your status.")
 		self.status()
 
-	def shop(self):
-		self.newline("A friendly merchant shows you their wares.")
 
 	def downtime(self):
 
 		out = f'''===================================
-The rest of the day is free.
-[ Rest ]  [ Forage ]
-[ Status ]
+Select an activity you wish to do.
+[ Meditate ]  [ Forage ]
+[ Exercise ]  [ Status ]
+[ Back to Game  (back) ]
 ==================================='''
 
 		while True:
 			self.newstats["days"] += 1
 			print(out)
 			dt = input("What do you do? ")
-			if dt.lower() == "rest":
+			if dt.lower() == "meditate":
 				self.newstats["hp"] = self.newstats["maxhp"]
-				self.newline("You take a break for the day, taking a rest and eat snacks. Your health is fully restored!")
+				self.newline("You took a well-deserved break to recover your mind and body. Your health is now fully restored!")
 				break
 			elif dt.lower() == "forage":
 				self.forage()
 				break
+			elif dt.lower() == "exercise":
+				if self.newstats["hp"] < self.newstats['maxhp']-4:
+					self.newstats["hp"] += 4
+					self.newline("You sweated out your stresses and regained 6 HP!")
+				else:
+					self.newstats["hp"] = self.newstats['maxhp']
+					self.newline("You sweated out your stresses and restored your health!")
+				input("Press ENTER to view your status.")
+				self.status()
+				break
 			elif dt.lower() == "status":
 				self.status()
+			elif dt.lower() == "back":
+				break
 			else:
 				print("You have entered an invalid response. Please try again.")
 
 	def choices(self):
 
 		out = f'''===================================
-The next step of your journey awaits you.
-
+The next step of your Exploration awaits you.
 Make your choice. (Type the word in the brackets like these.)
-[ Continue your Journey (Continue) ]
+[ Continue your Exploration (Continue) ]
 [ Take a break, spend some Downtime (Downtime) ]
 [ Quit the Game (Quit) ]
 ==================================='''
@@ -84,7 +87,8 @@ Make your choice. (Type the word in the brackets like these.)
 			if dt.lower() == "continue":
 				break
 			elif dt.lower() == "downtime":
-				self.newline("You decide to break from your journey for a bit to do other things.")
+				self.newline("You have decided to take a break from your exploration to do other things.")
+				self.downtime()
 			elif  dt.lower() == "quit":
 				self.newline("You have quit the game.")
 				exit()
