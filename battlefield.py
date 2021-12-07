@@ -1,5 +1,5 @@
-from random import choice as ch
-from monsters import *
+from random import choice
+# from monsters import *
 from character import *
 from questions import *
 from menu import *
@@ -8,15 +8,15 @@ class battlefield:
 	def __init__(self,newchar,newstats,monster):
 		self.hero = hero
 		self.pstats = newstats
-		self.monster = monster
+		# self.monster = monster
 		self.mstats = self.monster.stats()
 
 
 	def bstate(self, qn):
-		enemy = f'''{self.mstats["name"]} [{self.mstats["hp"]}/{self.mstats["maxhp"]}]'''
+		enemy = '''Society [20/20]'''
 		you = f'''{self.pstats["name"]} [{self.pstats["hp"]}/{self.pstats["maxhp"]}]'''
 
-		qchoice = ch(list(qn.keys()))
+		qchoice = choice(list(qn.keys()))
 		qview = qn[qchoice]
 		qn.pop(qchoice)
 
@@ -28,8 +28,8 @@ class battlefield:
 {qview}
 ==================================='''
 		print(battleground)
-		choice = input("What do you do? ")
-		return choice.lower(),qn		
+		pchoice = input("What do you do? ")
+		return pchoice.lower(),qn		
 
 
 
@@ -50,22 +50,30 @@ Return
 		qn = q.game_qn()
 		for i in range(5):
 			c,qn = self.bstate(qn)
-			if c == "a":
-				self.pstats["hp"] -= 5
-				if self.pstats["hp"] <= 0:
-					break
-				else:
+			while True:
+				if c == "a":
+					self.pstats["hp"] -= 3
+					if self.pstats["hp"] <= 0:
+						print("""===================================
+
+You have lost the game. 
+
+===================================""")
+						input("Press ENTER to continue")
+						exit()
+					else:
+						break
+				elif c == "b":
+					if self.pstats["hp"] <= self.pstats["maxhp"]-2:
+						self.pstats["hp"]+=2
+						break
+					else:
+						br
+				elif c == "c":
 					continue
-			elif c == "b":
-				if self.pstats["hp"] < self.pstats["maxhp"]:
-					self.pstats["hp"]+=2
 				else:
+					print("You have entered an invalid action!")
 					continue
-			elif c == "c":
-				continue
-			else:
-				print("You have entered an invalid action!")
-				continue
 
 		print(f'''===================================
 {self.mstats["name"]} [{self.mstats["hp"]}/{self.mstats["maxhp"]}]
@@ -76,5 +84,7 @@ Return
 ===================================""")  
 		else:
 			print("""You have succumbed to societal expectations and neglected your self-worth. It is time to start learning to love yourself and become stronger!
+
+You will now be brought to learn the importance resting and exercising to build up your self confidence.
 ===================================""")
 		input("Press ENTER to continue.")
