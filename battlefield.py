@@ -51,7 +51,7 @@ Return
 		for i in range(5):
 			c,qn = self.bstate(qn)
 			if c == "a":
-				self.pstats["hp"] -= 4
+				self.pstats["hp"] -= 5
 				if self.pstats["hp"] <= 0:
 					break
 				else:

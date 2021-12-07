@@ -37,4 +37,3 @@ The Game of Life Choices is a simple RPG meant to educate players on the importa
 
 char_name = input("Please enter your name: ")
 main(hero(char_name)).start(char_name)
-
