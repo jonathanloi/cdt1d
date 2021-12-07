@@ -1,5 +1,6 @@
 from character import *
 from random import *
+from questions import *
 
 class menus:
 
@@ -58,10 +59,13 @@ Select an activity you wish to do.
 			elif dt.lower() == "exercise":
 				if self.newstats["hp"] < self.newstats['maxhp']-4:
 					self.newstats["hp"] += 4
-					self.newline("You sweated out your stresses and regained 6 HP!")
+					print("""===================================
+You sweated out your stresses and regained 6 HP!""")
 				else:
 					self.newstats["hp"] = self.newstats['maxhp']
-					self.newline("You sweated out your stresses and restored your health!")
+					print("""===================================
+You sweated out your stresses and restored your health!""")
+				
 				input("Press ENTER to view your status.")
 				self.status()
 				break
@@ -71,6 +75,9 @@ Select an activity you wish to do.
 				break
 			else:
 				print("You have entered an invalid response. Please try again.")
+		
+		q = questions()
+		q.popup_question2()
 
 	def choices(self):
 
@@ -87,10 +94,10 @@ Make your choice. (Type the word in the brackets like these.)
 			if dt.lower() == "continue":
 				break
 			elif dt.lower() == "downtime":
-				self.newline("You have decided to take a break from your exploration to do other things.")
+				self.newline("You have decided to take a break to do other things.")
 				self.downtime()
 			elif  dt.lower() == "quit":
-				self.newline("You have quit the game.")
+				self.newline("You have quit the game. Thanks for Playing!")
 				exit()
 			else:
 				print("You have entered an invalid response. Please try again.")

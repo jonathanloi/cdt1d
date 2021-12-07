@@ -1,38 +1,18 @@
-from random import choice as ch
 from monsters import *
 from battlefield import battlefield
-from menu import *
-from questions import *
+from menu import menus
+from questions import questions
 
 class newgame:
 
-	def popup_question(self,newstats):
-		#Something questions 2
-		q = questions()
-		rand_qn = q.random_qn()
-		qchoice = ch(list(rand_qn.keys()))
-		qview = rand_qn[qchoice]
-		rand_qn.pop(qchoice)
-		while True:
-			print(f"""===================================
-{qview}
-===================================""")
-			ans = input("Your choice: ")
-			if ans.lower() == 'a':
-				break
-			elif ans.lower() == 'b':
-				print("GAME OVER")
-				exit()
-			else: 
-				print("You have entered an invalid action!")
-				continue
-
-
 	def start_instance(self,newchar,newstats):
-
+		
+		q = questions()
 		m = menus(newstats)
-		self.popup_question(newstats)
+		q.popup_question()
+
 		m.newline(f'''We live in a highly competitive society. From academic, to family and our career, there are tons of expectations we have set as a society. It does not help that social media has become the norm in our generation. With the prevalence of social media, we are constantly comparing ourselves to others who live the 'perfect' life, pressured to follow the latest trends and subjected to FOMO. While struggling to keep up with societal expectations, we tend to lose focus on ourselves and put ourselves in a cycle of self-doubt.
+
 Play this game to embark on an Exploration about yourself!''')
 		a = battlefield(newchar,newstats,gobbo()) # This is the object
 		a.action() # This is the action module
